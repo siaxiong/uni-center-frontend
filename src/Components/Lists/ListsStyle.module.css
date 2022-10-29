@@ -1,0 +1,13 @@
+.list__component ul {
+  border-top: 1px solid #e3e3e3;
+}
+.list__component ul li {
+  border-bottom: 1px solid #e3e3e3;
+  padding: 1em;
+  cursor: pointer;
+}
+.list__component ul li div {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}/*# sourceMappingURL=ListsStyle.module.css.map */

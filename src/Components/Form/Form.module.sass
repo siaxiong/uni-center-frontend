@@ -1,0 +1,59 @@
+.form
+    font-size: 1.2em
+    max-width: 400px
+    border: 1px solid black
+
+    * 
+        font-size: inherit
+    button
+        border: none
+        padding: 0.8em
+    .form__action
+        display: flex
+        button
+            font-size: inherit
+            flex-grow: 1
+            // border: none
+            padding: 1em
+            background-color: #5F9DF7
+        .form__action-active
+            filter: brightness(90%)
+
+    .form__action-active.form__action-body
+        display: block
+        filter: brightness(90%)
+
+    .form__action-body
+        display: none
+        padding: 1em
+
+        > *
+            margin: 0.8em 0
+
+        input
+            font-size: inherit
+            width: 100%
+            padding: 0.8em
+            border: none
+        .form__field-required
+            border: 1px solid red
+        .form__field-required-msg
+            color: red
+            margin: 0.2em 0
+    .form__action-btn
+        width: 100%
+
+    .form__radio-group
+        .form__radio
+            display: flex
+            input
+                width: initial
+            label
+                padding: 1em 0 1em 0.5em
+    .form__confirmation-success
+        text-align: center
+        margin: 2em 0
+
+            
+
+        

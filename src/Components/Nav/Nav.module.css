@@ -1,0 +1,8 @@
+nav {
+  max-width: 1000px;
+  border: 1px solid black;
+}
+nav ul li {
+  list-style: none;
+  padding: 1.5em;
+}/*# sourceMappingURL=Nav.module.css.map */

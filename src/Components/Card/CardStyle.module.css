@@ -1,0 +1,19 @@
+.card__group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.card__group a {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 5em;
+  border: 1px solid red;
+}
+
+.card__title {
+  text-align: center;
+  border: 1px solid black;
+  padding: 1em;
+  margin: 1em 0;
+}/*# sourceMappingURL=CardStyle.module.css.map */

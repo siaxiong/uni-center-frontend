@@ -1,0 +1,64 @@
+.form {
+  font-size: 1.2em;
+  max-width: 400px;
+  border: 1px solid black;
+}
+.form * {
+  font-size: inherit;
+}
+.form button {
+  border: none;
+  padding: 0.8em;
+}
+.form .form__action {
+  display: flex;
+}
+.form .form__action button {
+  font-size: inherit;
+  flex-grow: 1;
+  padding: 1em;
+  background-color: #5F9DF7;
+}
+.form .form__action .form__action-active {
+  filter: brightness(90%);
+}
+.form .form__action-active.form__action-body {
+  display: block;
+  filter: brightness(90%);
+}
+.form .form__action-body {
+  display: none;
+  padding: 1em;
+}
+.form .form__action-body > * {
+  margin: 0.8em 0;
+}
+.form .form__action-body input {
+  font-size: inherit;
+  width: 100%;
+  padding: 0.8em;
+  border: none;
+}
+.form .form__action-body .form__field-required {
+  border: 1px solid red;
+}
+.form .form__action-body .form__field-required-msg {
+  color: red;
+  margin: 0.2em 0;
+}
+.form .form__action-btn {
+  width: 100%;
+}
+.form .form__radio-group .form__radio {
+  display: flex;
+}
+.form .form__radio-group .form__radio input {
+  width: initial;
+}
+.form .form__radio-group .form__radio label {
+  padding: 1em 0 1em 0.5em;
+}
+.form .form__confirmation-success {
+  text-align: center;
+  margin: 2em 0;
+}/*# sourceMappingURL=Form.module.css.map */
