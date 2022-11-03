@@ -56,7 +56,7 @@
   width: initial;
 }
 .form .form__radio-group .form__radio label {
-  padding: 1em 0 1em 0.5em;
+  padding: 0.5em 0 0.5em 0.5em;
 }
 .form .form__confirmation-success {
   text-align: center;

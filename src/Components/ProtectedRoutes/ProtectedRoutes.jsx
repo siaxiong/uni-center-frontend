@@ -6,9 +6,7 @@ export const ProtectedRoutes = ({children}) => {
     const { credentials, setCredentials } = useContext( AuthContext );
 
     useEffect(()=>{
-        console.log("ProtectedRoutes ran!")
-        console.log(credentials);
-        console.log("****")
+
     }, [credentials])
 
     useEffect(()=>{

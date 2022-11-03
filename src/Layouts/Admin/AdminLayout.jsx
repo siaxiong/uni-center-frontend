@@ -11,7 +11,7 @@ export const AdminLayout = ({children}) => {
 
     const logout = ()=>{
         sessionStorage.removeItem("/api/signin");
-        
+
         setCredentials("");
 
         navigate("/");
@@ -22,7 +22,7 @@ export const AdminLayout = ({children}) => {
         <p>Admin Layout</p>
         <button onClick={()=>logout()}>Logout</button>
         <p>{`EMAIL: ${credentials.email}`}</p>
-        <p>{`EMAIL: ${credentials.role}`}</p>
+        <p>{`ROLE: ${credentials.role}`}</p>
         <Outlet/>
     </div>
 }

@@ -3498,36 +3498,43 @@ a.tag:hover {
   font-size: 1.5rem;
 }
 
-.Courses .Courses__course {
-  margin: 2em 0;
-}
-.Courses .Courses__course form {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.2em;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.Courses .Courses__course form input {
-  font-size: inherit;
-  padding: 0.5em;
-}
-.Courses .Courses__course form button {
-  font-size: inherit;
-  padding: 0.5em;
-}
-.Courses .list__component {
-  max-width: 1000px;
-  margin: 0 auto;
-  border: 1px solid #e3e3e3;
-}
-.Courses .list__component ul {
+.pendingUsers__page ul {
+  margin: 1em 0;
   border-top: 1px solid #e3e3e3;
 }
-.Courses .list__component ul li {
+.pendingUsers__page ul li {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 1em;
+  cursor: pointer;
+}
+.pendingUsers__page ul .Users__headers {
+  display: flex;
+  justify-content: space-around;
+}
+.pendingUsers__page .list__component {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-right: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+}
+.pendingUsers__page .list__component ul {
+  border-top: 1px solid #e3e3e3;
+}
+.pendingUsers__page .list__component ul li {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e3e3e3;
   padding: 1em;
   cursor: pointer;
-}/*# sourceMappingURL=CoursesStyle.module.css.map */
+}
+.pendingUsers__page .list__component ul li p {
+  margin-right: 2em;
+}
+.pendingUsers__page .list__component ul li div {
+  width: 40%;
+}
+.pendingUsers__page .list__component ul li .list__btn-group button {
+  margin: 0 0.5em;
+}/*# sourceMappingURL=UsersStyle.module.css.map */
