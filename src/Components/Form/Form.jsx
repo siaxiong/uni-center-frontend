@@ -16,7 +16,7 @@ export const Form = function(){
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("siaxiong23@icloud.com");
+    const [email, setEmail] = useState("siaxiong52@gmail.com");
     const [password, setPassword] = useState("123password");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [confirmationCode, setConfirmationCode] = useState("");
@@ -57,6 +57,7 @@ export const Form = function(){
             axios({method:"POST",url:"/api/signin",data:{email,password}})
             .then(resp =>{
                 // setIncorrectSignIngs(false);
+                console.log(resp)
                 sessionStorage.setItem("/api/signin", JSON.stringify(resp.data.Credentials))
                 setCredentials(resp.data.Credentials);
                 navigate(`/${(resp.data.Credentials.role).toLowerCase()}`)

@@ -3519,10 +3519,11 @@ a.tag:hover {
 .Courses .list__component {
   max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid #e3e3e3;
 }
 .Courses .list__component ul {
   border-top: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
 }
 .Courses .list__component ul li {
   display: flex;

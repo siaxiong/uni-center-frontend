@@ -3498,28 +3498,28 @@ a.tag:hover {
   font-size: 1.5rem;
 }
 
-.pendingUsers__page .list__component {
+.style {
+  width: 1000px;
+  text-align: center;
+  border: 1px solid black;
+}
+.style .select .style__select-element {
+  width: 500px;
+  margin: 0 auto;
+}
+.style .list__component {
   max-width: 1000px;
   margin: 0 auto;
 }
-.pendingUsers__page .list__component ul {
+.style .list__component ul {
   border-top: 1px solid #e3e3e3;
   border-left: 1px solid #e3e3e3;
   border-right: 1px solid #e3e3e3;
 }
-.pendingUsers__page .list__component ul li {
+.style .list__component ul li {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e3e3e3;
   padding: 1em;
   cursor: pointer;
-}
-.pendingUsers__page .list__component ul li p {
-  margin-right: 2em;
-}
-.pendingUsers__page .list__component ul li div {
-  width: 40%;
-}
-.pendingUsers__page .list__component ul li .list__btn-group button {
-  margin: 0 0.5em;
-}/*# sourceMappingURL=UsersStyle.module.css.map */
+}/*# sourceMappingURL=ProfessorsStyle.module.css.map */

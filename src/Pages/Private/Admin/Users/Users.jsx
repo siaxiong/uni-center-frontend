@@ -56,6 +56,7 @@ export const Users = () => {
                 <li key={item.email}>
                         <p>{`${index+1})`}</p>
                         <div>
+                            <p>{`${item.id}`}</p>
                             <p>{`${item.email}`}</p>
                             <p>{`${item.name}`}</p>
                             <p>{`${item.role}`}</p>

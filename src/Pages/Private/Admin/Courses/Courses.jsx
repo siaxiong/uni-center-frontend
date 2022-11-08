@@ -27,7 +27,9 @@ export const Courses = () => {
 
     const getCourses = ()=>{
         axios({url:"/api/admin/course"})
-        .then(resp=>setCourses(resp.data))
+        .then(resp=>{
+            console.log(resp.data);
+            setCourses(resp.data)})
         .catch(e=>console.log(e))
     }
     
@@ -43,6 +45,7 @@ export const Courses = () => {
             if(newCourseName&&courseDescription){
                 await axios({method:"POST",url:"/api/admin/course", data:{course_name:newCourseName, description: courseDescription}})
                 const resp =  await axios({url:"/api/admin/course"});
+                console.log(resp.data);
                 setCourses(resp.data);
 
                 setNewCourseName("");
@@ -57,11 +60,10 @@ export const Courses = () => {
     }
 
 
-    const deleteCourse =  (course_id) => {
-        axios({method:"DELETE",url:"/api/admin/course", data:{courses:[course_id]}})
+    const deleteCourse =  (id) => {
+        axios({method:"DELETE",url:"/api/admin/course", data:{id}})
         .then(resp=>console.log(resp.data))
-        .then(()=>getCourses)
-        .then(resp=>setCourses(resp.data))
+        .then(()=>getCourses())
         .catch(e=>console.log(e))
     }
 
@@ -80,19 +82,18 @@ export const Courses = () => {
         <div className={style["list__component"]}>
             <ul>
                 {courses.map((item, index)=>
-                <li key={item.course_id}>
+                <li key={item.id}>
                         <p>{`${index+1})`}</p>
                         <div>
                             <div>
-                                <p>{`Name:`}</p>
-                                <p>{`${item.name} ${item.course_id}`}</p>
+                                <p>{`Course Name: ${item.name}`}</p>
+                                <p>{`Course ID: ${item.id}`}</p>
                             </div>
                             <div>
-                                <p>{`Description:`}</p>
-                                <p>{`${item.description}`}</p>
+                                <p>{`Description ${item.description}`}</p>
                             </div>
                         </div>
-                        <button type="click" className={style["button"]} onClick={()=>deleteCourse(item.course_id)}>Delete</button>
+                        <button type="click" className={style["button"]} onClick={()=>deleteCourse(item.id)}>Delete</button>
                 </li>)}
             </ul>
         </div>
