@@ -1,17 +1,37 @@
-.card__group
-    display: flex
-    flex-direction: row
-    justify-content: center
-    a
-        width: 100%
-        max-width: 300px
-        margin: 0 auto
-        padding: 5em
-        border: 1px solid red
+@import "../../../node_modules/bulma/sass/utilities/_all.sass"
+@import "../../../node_modules/bulma/sass/elements/_all.sass"
+@import "../../../node_modules/bulma/sass/form/_all.sass"
+@import "../../../node_modules/bulma/sass/components/_all.sass"
 
-.card__title
-    text-align: center
-    border: 1px solid black
+$blue-color: hsl(207deg, 61%, 53%)
+
+
+.Card-Component
+    margin: 0 1em
     padding: 1em
-    margin: 1em 0
+
+    .card
+        .card-header
+            .card-header-title
+                display: block
+                text-align: center
+
+    .card-body
+        display: flex
+        justify-content: space-evenly
+        flex-wrap: wrap
+        margin: 2em auto
+        .card-item.card
+            display: flex
+            flex-direction: column
+            justify-content: center
+            text-align: center
+            width: 200px
+            height: 200px
+            margin: 1em
+            line-height: 2em
+            background-color: #eff5fb
+            color: #296fa8
+
+
     

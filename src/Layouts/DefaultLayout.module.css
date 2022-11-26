@@ -1,3 +1,13 @@
-.style {
+.DefaultLayout {
+  display: flex;
+  flex-direction: column;
   background-color: white;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}
+.DefaultLayout .footer {
+  text-align: center;
+  margin: 2em 0;
 }/*# sourceMappingURL=DefaultLayout.module.css.map */

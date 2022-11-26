@@ -1,13 +1,43 @@
-.list__component ul {
-  border-top: 1px solid #e3e3e3;
+.list-component {
+  max-width: 1000px;
+  margin: 3em auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-.list__component ul li {
+.list-component .list__title {
+  padding: 1em;
+  background-color: hsl(207deg, 61%, 53%);
+}
+.list-component ul {
+  border-top: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+  list-style: none;
+  max-height: 500px;
+  overflow: scroll;
+}
+.list-component ul li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   border-bottom: 1px solid #e3e3e3;
   padding: 1em;
   cursor: pointer;
 }
-.list__component ul li div {
+.list-component ul li .list__item-index {
+  margin-right: 3em;
+}
+.list-component ul li .list__item-content {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  width: 100%;
+}
+.list-component ul li .list__item-content .list__item-info {
+  width: 100%;
+  max-width: 70%;
+}
+.list-component ul li .list__item-content .list__item-button-group {
+  width: 100%;
+  max-width: 30%;
+}
+.list-component ul li .list__item-content .list__item-button-group button {
+  margin: 0 0.5em;
 }/*# sourceMappingURL=ListsStyle.module.css.map */

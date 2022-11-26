@@ -1,30 +1,21 @@
+
 @import "../../../../../node_modules/bulma/sass/utilities/_all.sass"
 @import "../../../../../node_modules/bulma/sass/elements/_all.sass"
 @import "../../../../../node_modules/bulma/sass/form/_all.sass"
+@import "../../../../../node_modules/bulma/sass/components/_all.sass"
 
 
-.style
-    width: 1000px
-    // margin: 0 auto
-    text-align: center
-    border: 1px solid black
+/*My personal list sass file*/
+// @import "../../../../Components/Lists/ListsStyle.module.sass"
+@import "../../../../Components/Table/TableStyle.module.sass"
 
-    .select
-        // width: 100%
+    
+.admin-professor-page
+    .card
+        padding: 1em
+    .card > *
+        margin-bottom: 1em
+    .select,
+    .select > select
+        width: 100%
 
-        .style__select-element
-            width: 500px
-            margin: 0 auto
-    .list__component
-        max-width: 1000px
-        margin: 0 auto
-        ul
-            border-top: 1px solid #e3e3e3
-            border-left: 1px solid #e3e3e3
-            border-right: 1px solid #e3e3e3
-            li
-                display: flex
-                justify-content: space-between
-                border-bottom: 1px solid #e3e3e3
-                padding: 1em
-                cursor: pointer

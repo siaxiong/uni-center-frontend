@@ -1,8 +1,28 @@
 nav {
-  max-width: 1000px;
-  border: 1px solid black;
+  border: 1px solid #e3e3e3;
+  background-color: #f4f4f4;
+}
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+nav ul li.highlightNav {
+  background-color: #e3e3e3;
+}
+nav ul .homeNav:hover {
+  background-color: #f4f4f4;
+}
+nav ul li:hover {
+  background-color: #e3e3e3;
 }
 nav ul li {
   list-style: none;
-  padding: 1.5em;
+}
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  padding: 2em 3em;
+  cursor: pointer;
+  color: black;
 }/*# sourceMappingURL=Nav.module.css.map */

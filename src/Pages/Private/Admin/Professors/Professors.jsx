@@ -4,140 +4,118 @@ import ProfessorsStyle from "./ProfessorsStyle.module.css";
 
 export const Professors = () => {
     const style = ProfessorsStyle;
-    const [courses, setCourses] = useState([]);
+    const [assignableCourses, setAssignableCourses] = useState([]);
     const [professors, setProfessors] = useState([]);
 
     const [assignedCourses, setAssignedCourses] = useState([])
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
-
-    const [actionType, setActionType] = useState("");
-
     const [selectedCourse, setSelectedCourse] = useState("");
     const [selectedProfessor, setSelectedProfessor] = useState("");
     
     useEffect(()=>{
-        axios({url:"/api/admin/professors"})
-        .then(resp=>{
-            console.log(resp);
-            setProfessors(resp.data);
-        })
-        .catch(e=>console.log(e))
-        setSelectedProfessor("")
-        setSelectedCourse("")
+        getAllProfessors()
+        getAssignedCourses();
+        getAllCourses();
 
-    },[actionType])
+    },[])
 
-    useEffect(()=>{
 
-        if(actionType==="ASSIGN"){
-            getUnassignedCourses();
-        }
-
-        if(actionType==="UNASSIGN"){
-            console.log(actionType)
-            getAssignedCourses(selectedProfessor)
-        }
-
-    },[selectedProfessor])
-
-    const getUnassignedCourses = () => {
-        axios({url:"/api/admin/course", params:{id:selectedProfessor}})
-        .then(resp=>{
-            console.log(resp.data);
-            setCourses(resp.data);
-        })
+    //User with role of "Professor"
+    const getAllProfessors = () => {
+        axios({url: "/api/v1/users", params: {role: "PROFESSOR", aws_confirmed: true, enrolled: "ACCEPTED"}})
+        .then(resp=>setProfessors(resp.data))
         .catch(e=>console.log(e))
     }
-    const getAssignedCourses = (professorId) => {
-        axios({url:"/api/admin/assigned-courses", params: {id:professorId}})
-        .then(resp=>setAssignedCourses(resp.data))
+
+    const getAllCourses = () => {
+        axios({url: "/api/v1/courses"})
+        .then(resp=>setAssignableCourses(resp.data))
+        .catch(e=>console.log(e))    }
+
+
+    const getAssignedCourses = () => {
+        axios({url:`/api/v1/professors`})
+        .then(resp=>{
+            console.log(resp.data);
+            setAssignedCourses(resp.data)})
         .catch(e=>console.log(e))
     }
     
-    useEffect(()=>{
-        console.log("setSelected ran")
-    }, [selectedCourse])
 
     const assignCourseToProfessor = () => {
-        axios({method:"POST", url:"/api/admin/professor", data:{professorId:selectedProfessor, courseId:selectedCourse}})
+        axios({method:"POST", url:`/api/v1/professors`, data: {userId: selectedProfessor, courseId: selectedCourse}})
         .then(resp=>{
-            setSelectedCourse("");
-            getUnassignedCourses();
+            getAssignedCourses();
+            // setSelectedCourse("");
+            // setSelectedProfessor("")
         })
         .catch(e=>console.log(e))
     }
 
-    const removeProfessorFromCourse = () => {
-        axios({method:"DELETE",url:"/api/admin/professor",data:{id:selectedProfessor,courseId:selectedCourse}})
-        .then(resp=>getAssignedCourses(selectedProfessor))
+    const removeProfessorFromCourse = (professorId) => {
+        axios({method:"DELETE",url:`/api/v1/professors/${professorId}`})
+        .then(resp=>getAssignedCourses())
         .catch(e=>console.log(e))
     }
 
 
-    return <div className={style["style"]}>
-        <p>Select Action</p>
-        <div className={style["select"]}>
-            <select className={style["style__select-element"]} onChange={e=>setActionType(e.target.value)}>
-                <option value={"null"}>Select action</option>
-                <option value={"ASSIGN"}>Assign Professor To Course</option>
-                <option value={"UNASSIGN"}>Remove Professor From Course</option>
-            </select>
-        </div>
-        {
-            actionType&&(actionType === "ASSIGN") ?  
+    return <div className={style["admin-professor-page"]}>
+        <div className={[style["card"]].join(" ")}  >
+            <p>Assign Courses To Professors</p>
+            <p>Reminder that users with a role of "Professor" must have confirmed their account and been accepted before they can be assign to teach a course.</p>
             <div>
                 <div className={style["select"]}>
                     <select className={style["style__select-element"]} onChange={e=>setSelectedProfessor(e.target.value)}>
                         <option>Select a professor</option>
-                        {professors.map(professor=><option key={professor.id} value={professor.id}>{professor.name}</option>)}
+                        {professors.map(professor=><option key={professor.id} value={professor.id}>{`Name: ${professor.name} , Email: ${professor.email}`}</option>)}
                     </select>
-                </div>
-                <div className={style["select"]}>
-                    <select className={style["style__select-element"]} onChange={e=>console.log(setSelectedCourse((e.target.value)))}>
-                        <option key={"123123123"} value={"null"}>Select a course</option>
-                        {courses.map(course=><option key={course.id} value={course.id}>
-                            {course.name}
-                        </option>)}
-                    </select>
-                </div>
-            <div>
-        </div>
-        <div>
-            {selectedCourse ? <p>Description: {courses.find(course=>course.id===selectedCourse)?.description}</p> : null}
-            {selectedCourse&&selectedProfessor ?  <p>Assign ***{(courses.find(course=>course.id===selectedCourse))?.name}*** to ***{selectedProfessor}***</p> : null}
-            <button className={style["button"]} onClick={()=>assignCourseToProfessor()}>Assign</button>
-        </div>
-        </div>
-        : null
-        }
-
-        {
-            actionType&&(actionType==="UNASSIGN") ? 
-            <div>
-                <div className={style["select"]}>
-                    <select className={style["style__select-element"]} onChange={e=>setSelectedProfessor(e.target.value)}>
-                        <option>Select a professor</option>
-                        {professors.map(professor=><option key={professor.id} value={professor.id}>{professor.name}</option>)}
-                    </select>
-                </div>
-                <div className={style["select"]}>
-                    <select className={style["style__select-element"]} onChange={e=>console.log(setSelectedCourse((e.target.value)))}>
-                        <option key={"123123123"} value={"null"}>Select a course</option>
-                        {assignedCourses.map(course=><option key={course.id} value={course.id}>
-                            {course.name}
-                        </option>)}
-                    </select>
-                </div>
-                <div>
-                    {selectedCourse ? <p>{assignedCourses.find(course=>course.id===selectedCourse)?.description}</p> : null}
-                    {selectedCourse&&selectedProfessor ?  <p>Remove ***{(professors.find(professor=>professor.id===selectedProfessor))?.name}*** from ***{(assignedCourses.find(course=>course.id===selectedCourse))?.name}***</p> : null}
-                    <button className={style["button"]} onClick={()=>removeProfessorFromCourse()}>Remove</button>
                 </div>
             </div>
-            
-             : null
-        }
+            <div>
+                <div className={style["select"]}>
+                    <select className={style["style__select-element"]} onChange={e=>console.log(setSelectedCourse((e.target.value)))}>
+                        <option key={"123123123"} value={"null"}>Select a course</option>
+                        {assignableCourses.map(course=><option key={course.id} value={course.id}>
+                            {course.name}
+                        </option>)}
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="click" className={style["button"]} onClick={()=>assignCourseToProfessor()}> Assign Course</button>
+            </div>
+        </div>
 
+        <div className={[style["table-container"], style["card"]].join(" ")}>
+            <p className={style["table-name"]}>All Courses That Were Assigned To Professors</p>
+            <table>
+                <thead>
+                    <tr key={"randomKey123ABC"}>
+                        <th></th>
+                        <th>ID</th>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Professor</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {assignedCourses.map((course,index)=><tr key={ course.professorId }>
+                        <td>{index+1}</td>
+                        <td>{course.courseId}</td>
+                        <td>{course.courseName}</td>
+                        <td>{course.description}</td>
+                        <td>
+                            <p>{course.userName}</p>
+                            <p>{course.userEmail}</p>
+                            {/* <p>{course.userId}</p> */}
+
+                        </td>
+                        <td><button className={[style["button"], style["is-warning"]].join(" ")} onClick={()=>removeProfessorFromCourse(course.professorId)}>Remove Professor From Course</button></td>
+                    </tr>)}
+                </tbody>
+            </table>
+        </div>
     </div>
 }

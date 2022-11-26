@@ -2,41 +2,16 @@
 @import "../../../../../node_modules/bulma/sass/utilities/_all.sass"
 @import "../../../../../node_modules/bulma/sass/elements/_all.sass"
 @import "../../../../../node_modules/bulma/sass/form/_all.sass"
+@import "../../../../../node_modules/bulma/sass/components/_all.sass"
 
+/*My personal list sass file*/
+// @import "../../../../Components/Lists/ListsStyle.module.sass"
+@import "../../../../Components/Table/TableStyle.module.sass"
 
+.Courses-Page
+    .create-course-form
+        padding: 1em
+        > *
+            margin-bottom: 1em
 
-// @import url("bulma/sass/utilities/_all.sass")
-// @import url("bulma/sass/elements/button.sass")
-
-.Courses
-    .Courses__course
-        margin: 2em 0
-        form
-            display: flex
-            flex-direction: column
-            font-size: 1.2em
-            max-width: 500px
-            margin: 0 auto
-            input
-                font-size: inherit
-                padding: 0.5em
-                // background-color: #f2f2f2
-            button
-                font-size: inherit
-                padding: 0.5em
-
-
-    .list__component
-        max-width: 1000px
-        margin: 0 auto
-        ul
-            border-top: 1px solid #e3e3e3
-            border-left: 1px solid #e3e3e3
-            border-right: 1px solid #e3e3e3
-            li
-                display: flex
-                justify-content: space-between
-                border-bottom: 1px solid #e3e3e3
-                padding: 1em
-                cursor: pointer
-        
+    

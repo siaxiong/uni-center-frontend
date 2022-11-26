@@ -1,28 +1,34 @@
-import React, {useContext} from "react";
-import AdminLayoutCSS from "./AdminLayout.module.css";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import AdminLayoutStyle from "./AdminLayout.module.css";
+import { Outlet, Link } from "react-router-dom";
 import { AuthContext } from "../../Components/AuthProvider/AuthContext";
-
+import { Profile } from "../../Components/Profile/Profile";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faArrowLeft
+     } from '@fortawesome/free-solid-svg-icons';
+import { PathContext } from "../../Components/ProtectedRoutes/ProtectedRoutes";
 
 export const AdminLayout = ({children}) => {
-    
-    const {credentials, setCredentials}= useContext(AuthContext);
-    const navigate = useNavigate();
+    const style = AdminLayoutStyle;
 
-    const logout = ()=>{
-        sessionStorage.removeItem("/api/signin");
+    const {path, setPath} = useContext(PathContext);
 
-        setCredentials("");
 
-        navigate("/");
-    }
-
-    console.log(credentials.email)
-    return <div className={AdminLayout["AdminLayout"]}>
-        <p>Admin Layout</p>
-        <button onClick={()=>logout()}>Logout</button>
-        <p>{`EMAIL: ${credentials.email}`}</p>
-        <p>{`ROLE: ${credentials.role}`}</p>
-        <Outlet/>
+    return <div className={style["Admin-Layout"]}>
+        <Profile />
+        <div className={style["pages"]}>
+            <div className={[style["nav"]].join(" ")} >
+                <div className={ path==="on" ? style["backward-button-show"] : style["backward-button-hidden"]} >
+                    <Link to={"/admin"} onClick={()=>setPath("off")}><FontAwesomeIcon icon={faArrowLeft}/></Link>
+                </div>
+                <div className={[style["card"]].join(" ")}>
+                    <header className={style["card-header"]}>
+                        <p className={style["card-header-title"]}>Administrator Actions</p>
+                    </header>
+                </div>
+            </div>
+            <Outlet/>
+        </div>
     </div>
 }

@@ -28,13 +28,21 @@ export const ListsComponent = ({listArr, setSelected}) => {
     }, [clickedListArr])
 
     
-        return <div className={ListsStyle["list__component"]}>
+        return <div className={ListsStyle["list-component"]}>
             <ul>
-                {listArr.map((item, index)=><li key={item.course_id}>
-                    <div>
-                        <p>{`${index+1}) ${item.name}`}</p>
-                        <input type="checkbox" name="itemId" value={item.course_id} checked={clickedListArr.find(element=>element===item.course_id)} onChange={e=>onChecked(e)} />
-                    </div>
+                {lists.map((item, index)=>
+                <li key={item.id}>
+                        <p>{`${index+1})`}</p>
+                        <div>
+                            <div>
+                                <p>{`Course Name: ${item.name}`}</p>
+                                <p>{`Course ID: ${item.id}`}</p>
+                            </div>
+                            <div>
+                                <p>{`Description ${item.description}`}</p>
+                            </div>
+                        </div>
+                        <button type="click" className={style["button"]} onClick={()=>deleteCourse(item.id)}>Delete</button>
                 </li>)}
             </ul>
         </div>

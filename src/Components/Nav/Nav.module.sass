@@ -1,8 +1,24 @@
 nav 
-    max-width: 1000px
-    border: 1px solid black
+    border: 1px solid #e3e3e3
+    background-color: #f4f4f4
 
     ul 
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-evenly
+
+        li.highlightNav
+            background-color: #e3e3e3
+        .homeNav:hover
+            background-color: #f4f4f4
+        li:hover
+            background-color: #e3e3e3
         li
             list-style: none
-            padding: 1.5em
+            a
+                display: block
+                text-decoration: none
+                padding: 2em 3em
+                cursor: pointer
+                color: black
+            

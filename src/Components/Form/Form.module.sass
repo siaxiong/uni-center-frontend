@@ -1,13 +1,21 @@
+@import "../../../node_modules/bulma/sass/utilities/_all.sass"
+@import "../../../node_modules/bulma/sass/elements/_all.sass"
+@import "../../../node_modules/bulma/sass/form/_all.sass"
+@import "../../../node_modules/bulma/sass/components/_all.sass"
+
 .form
     font-size: 1.2em
-    max-width: 400px
-    border: 1px solid black
+    width: 100%
+    max-width: 450px
+    // border: 1px solid black
+    overflow: hidden
 
     * 
         font-size: inherit
     button
         border: none
         padding: 0.8em
+        color: white
     .form__action
         display: flex
         button
@@ -15,7 +23,8 @@
             flex-grow: 1
             // border: none
             padding: 1em
-            background-color: #5F9DF7
+            // background-color: #5F9DF7
+            background-color: hsl(207deg, 61%, 53%)
         .form__action-active
             filter: brightness(90%)
 
@@ -25,7 +34,7 @@
 
     .form__action-body
         display: none
-        padding: 1em
+        padding: 1em 2em
 
         > *
             margin: 0.8em 0

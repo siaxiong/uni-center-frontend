@@ -6,6 +6,8 @@ import { Nav } from "./Components/Nav/Nav";
 
 export const App = () => {
     const {credentials} = useContext(AuthContext)
-    
-    return <Outlet/>;
+    return <>
+            {credentials ? null : <Nav/>}
+            <Outlet/>
+    </>;
 }

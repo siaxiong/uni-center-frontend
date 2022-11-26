@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import { AuthContext } from './Components/AuthProvider/AuthContext';
 import { AuthProvider } from './Components/AuthProvider/AuthProvider';
-import { PublicHome } from './Pages/Public/PublicHome';
 import { DefaultLayout } from './Layouts/DefaultLayout';
 import { ProtectedRoutes } from './Components/ProtectedRoutes/ProtectedRoutes';
 import { AdminLayout } from './Layouts/Admin/AdminLayout';
@@ -24,13 +23,18 @@ import { Courses } from './Pages/Private/Admin/Courses/Courses';
 import { Users } from './Pages/Private/Admin/Users/Users';
 import { Professors } from './Pages/Private/Admin/Professors/Professors';
 
+import { PublicAdmin, PublicHome, PublicProfessor, PublicStudent } from './Pages/Public/PublicPages';
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App/>} >
             <Route index element={<PublicHome/>}/>
+            <Route path="public-admin" element={<PublicAdmin/>}/>
+            <Route path="public-professor" element={<PublicProfessor/>}/>
+            <Route path="public-student" element={<PublicStudent/>}/>
             <Route element={<ProtectedRoutes/>} >
                 <Route path="admin" element={<AdminLayout/>}>
-                    <Route index element={<AdminHome/>} />
+                    <Route index element={<AdminHome/>}/>
                     <Route path="courses" element={<Courses/>}/>
                     <Route path="professors" element={<Professors/>}/>
                     <Route path="users" element={<Users/>}/>
