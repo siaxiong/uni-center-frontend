@@ -29,6 +29,4 @@ jobs:
     - run: npm install -g svgo
     - run: npm i
     - run: npm run build 
-    - run: npm run start
-
     

@@ -39,10 +39,11 @@ export const Users = () => {
     }
 
     const permaDeleteUser = (id)=>{
-        axios({method:"DELETE", url:`/api/v1/users/${id}`})
-        .then(resp=>console.log(resp))
-        .then(()=>getAllUsers())
-        .catch(e=>console.log(e))
+        console.log("*****I disabled the delete user feature so the testing users can't be delete****");
+        // axios({method:"DELETE", url:`/api/v1/users/${id}`})
+        // .then(resp=>console.log(resp))
+        // .then(()=>getAllUsers())
+        // .catch(e=>console.log(e))
     }
 
 
@@ -76,6 +77,8 @@ export const Users = () => {
         </div>
         <div className={[style["table-container"], style["box"]].join(" ")}>
             <p className={style["table-title"]}>{`All users (including accepeted and rejected users)`}</p>
+            <p>*****I disabled the delete user feature so the testing users can't be delete****</p>
+
             <table>
                 <thead>
                     <tr key={"123ABCrandom"}>

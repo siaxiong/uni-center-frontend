@@ -5749,6 +5749,9 @@ label.panel-block:hover {
   max-width: 450px;
   overflow: hidden;
 }
+.form .annoucement-texts > div {
+  margin-top: 2em;
+}
 .form * {
   font-size: inherit;
 }

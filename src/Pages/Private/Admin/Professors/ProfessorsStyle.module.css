@@ -5780,6 +5780,9 @@ label.panel-block:hover {
   height: 100%;
 }
 
+.admin-professor-page .warning-texts {
+  background-color: hsl(44deg, 100%, 77%);
+}
 .admin-professor-page .card {
   padding: 1em;
 }

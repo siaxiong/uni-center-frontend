@@ -162,6 +162,14 @@ export const Form = function(){
             {incorrectSignIns ? <p className={style["form__field-required-msg"]}>Email or password is incorrect! Try again.</p> : null}
             <button onClick={(e)=>onClickSignIn(e)} className={[style["form__action-btn"], style["button"], style["is-info"]].join(" ")} type="click">Sign In</button>
             <button className={[style["form__action-btn"], style["button"], style["is-info"]].join(" ")} onClick={e=>{e.preventDefault();setConfirmation(true);}}>Confirm Account</button>
+            <div className={style["annoucement-texts"]}>
+                <p>Users with different role will see different UI when logged in. However, only the Admin UI and logic are functional at the moment.</p>
+                <div>
+                    <p>***Test User***</p>
+                    <p>jedixyqe@teleg.eu</p>
+                    <p>123password</p>
+                </div>
+            </div>
         </div>
         <div className={[style["form__action-body"], (signIn | confirmation | confirmationDone) ? null : style["form__action-active"]].join(" ")}>
             <div>
@@ -203,7 +211,7 @@ export const Form = function(){
         </div>
         <div className={[style["form__action-body"], style["form__confirmation"], !signIn&&confirmation ?  style["form__action-active"] : null].join(" ")}>
             <input type="text" id="confirmCode" className={style["input"]} placeholder="Confirmation code" onChange={(e)=>setConfirmationCode(e.target.value)} value={confirmationCode} />
-            <button onClick={(e)=>{e.preventDefault();onClickConfirmation(e);setSubmitClicked(true)}}>Confirm</button>
+            <button className={[style["button"], style["is-info"]].join(" ")} onClick={(e)=>{e.preventDefault();onClickConfirmation(e);setSubmitClicked(true)}}>Confirm</button>
         </div>
         <div className={[style["form__action-body"], style["form__confirmation"], signIn&&confirmation&&!confirmationDone ?  style["form__action-active"] : null].join(" ")}>
             <input type="text" placeholder="Email" className={style["input"]} onChange={e=>setEmail(e.target.value)} value={email} />

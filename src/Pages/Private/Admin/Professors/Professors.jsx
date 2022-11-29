@@ -63,7 +63,7 @@ export const Professors = () => {
     return <div className={style["admin-professor-page"]}>
         <div className={[style["card"]].join(" ")}  >
             <p>Assign Courses To Professors</p>
-            <p>Reminder that users with a role of "Professor" must have confirmed their account and been accepted before they can be assign to teach a course.</p>
+            <p className={style["warning-texts"]}>Reminder that users with a role of "Professor" must have confirmed their account and been accepted before they can be assign to teach a course.</p>
             <div>
                 <div className={style["select"]}>
                     <select className={style["style__select-element"]} onChange={e=>setSelectedProfessor(e.target.value)}>
