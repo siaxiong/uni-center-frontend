@@ -2,6 +2,7 @@ import React, { useEffect,useState} from "react";
 import ProfessorsStyle from "./ProfessorsStyle.module.css";
 import { fetchAPI } from "../../../../Utils/fetchAPI";
 
+
 export const Professors = () => {
 	const style = ProfessorsStyle;
 	const [assignableCourses, setAssignableCourses] = useState([]);
@@ -18,45 +19,44 @@ export const Professors = () => {
 
 	},[]);
 
+	console.log("*******");
+	console.log(window.navigator);
+	console.log("*******");
+
 
 	//User with role of "Professor"
 	const getAllProfessors = () => {
 		fetchAPI({path:"/users", query:{role:"Professor", enrollmentStatus: "Accepted"}})
-			.then(data=>setProfessors(data))
-			.catch(e=>console.log(e));
+			.then(data=>setProfessors(data));
 	};	
 
 	const getAllCourses = () => {
 		fetchAPI({path:"/courses"})
-			.then(data=>setAssignableCourses(data))
-			.catch(e=>console.log(e));
+			.then(data=>setAssignableCourses(data));
 	};
 
 
 	const getAssignedCourses = () => {
 		fetchAPI({path:"/professors"})
-			.then(data=>setAssignedCourses(data))
-			.catch(e=>console.log(e));
+			.then(data=>setAssignedCourses(data));
 	};
     
 
 	const assignCourseToProfessor = () => {
 		fetchAPI({path:"/professors", method:"POST", body:{userId: selectedProfessor, courseId: selectedCourse}})
-			.then(()=>getAssignedCourses())
-			.catch(e=>console.log(e));
+			.then(()=>getAssignedCourses());
 	};
 
 	const removeProfessorFromCourse = (professorId) => {
 		fetchAPI({path:`/professors/${professorId}`,method:"DELETE"})
-			.then(()=>getAssignedCourses())
-			.catch(e=>console.log(e));
+			.then(()=>getAssignedCourses());
 	};
 
 
 	return <div className={style["admin-professor-page"]}>
 		<div className={[style["card"]].join(" ")}  >
 			<p>Assign Courses To Professors</p>
-			<p className={style["warning-texts"]}>Reminder that users with a role of Professor must have confirmed their account and been accepted before they can be assign to teach a course.</p>
+			<p className={style["warning-texts"]}>Reminder that users with a role of Professor must have their enrollment accepted before they can be assign to teach a course.</p>
 			<div>
 				<div className={style["select"]}>
 					<select className={style["style__select-element"]} onChange={e=>setSelectedProfessor(e.target.value)}>

@@ -15,8 +15,8 @@ export const Users = () => {
 	},[]);
 
 	const getAllUsers = async()=>{
-		const data = await fetchAPI({path:"/users"});
-		setAllUsers(data);
+		fetchAPI({path:"/users"})
+			.then(data=>setAllUsers(data));
 	};
 	const acceptPendingUser = async (id:string)=>{
 

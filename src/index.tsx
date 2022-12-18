@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 
 import { AuthProvider } from "./Components/AuthProvider/AuthProvider";
-import { ProtectedRoutes } from "./Components/AuthProvider/ProtectedRoutes";
 import { ProfessorHome } from "./Pages/Private/Professor/ProfessorHome";
 import { StudentHome } from "./Pages/Private/Student/StudentHome";
 import { App } from "./App";

@@ -19,8 +19,7 @@ export const Courses = () => {
 
 	const getCourses = ()=>{
 		fetchAPI({path:"/courses"})
-			.then(data=>setCourses(data))
-			.catch(e=>console.log(e));
+			.then(data=>setCourses(data));
 	};
     
 	useEffect(()=>{
@@ -48,8 +47,7 @@ export const Courses = () => {
 
 	const deleteCourse =  (id) => {
 		fetchAPI({path:`/courses/${id}`, method:"DELETE"})
-			.then(()=>getCourses())
-			.catch(e=>console.log(e));
+			.then(()=>getCourses());
 	};
 
 
