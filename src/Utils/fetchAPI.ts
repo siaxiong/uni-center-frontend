@@ -6,7 +6,8 @@ type payloadType = {
 	body?: Record<string,string>
 	authorization?: boolean,
 	contentType?: string,
-	query?: Record<string,string>
+	query?: Record<string,string>,
+	showAlert?: boolean
 }
 
 
@@ -54,7 +55,6 @@ export const fetchAPI = async function(payload: payloadType){
 		
 	} catch (error) {
 		alert("There was a problem with that operation or getting resources for that operation.");
-		return Promise.reject(new Error(`Problem with request to get data, ${payload}, from server`));
 	}
 
 };

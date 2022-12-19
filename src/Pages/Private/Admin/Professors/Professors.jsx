@@ -19,11 +19,7 @@ export const Professors = () => {
 
 	},[]);
 
-	console.log("*******");
-	console.log(window.navigator);
-	console.log("*******");
-
-
+	
 	//User with role of "Professor"
 	const getAllProfessors = () => {
 		fetchAPI({path:"/users", query:{role:"Professor", enrollmentStatus: "Accepted"}})

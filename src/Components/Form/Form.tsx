@@ -7,29 +7,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Auth_Types } from "../../myTypes";
 import { fetchAPI } from "../../Utils/fetchAPI";
-
+import {ENV_API } from "../../ENVIRONMNET_VAR";
 export const Form = function(){
 
-	const currentURLSearchParam = new URLSearchParams(window.location.search);
-	const client_id = "Of5Nq2d8uu7rVbvUn6RD1uSz4vZI06XQ";
-	const redirect_uri = "http://localhost:3000";
-	const idpDomain = "https://university-center.us.auth0.com";
-	const grant_type = "authorization_code";
-    
-
-	const codeChallenge = "-StwiJTfXjf0vMqy34yVmFSQew5ErV-gs2fair_K7Hw";
-	const audience = "audience=https://university-center.siaxiong.com&";
-	const pkceURL= `https://university-center.us.auth0.com/authorize?${audience}response_type=code&code_challenge=${codeChallenge}&connection=Google&code_challenge_method=S256&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=openid%20profile%20name%20email%20offline_access`;
 
 	const style = FormStyle;
 
 	const navigate = useNavigate();
+
+	const currentURLSearchParam = new URLSearchParams(window.location.search);
 	const code = currentURLSearchParam.get("code");
 
 	if(code){
 		(async()=>{
 			try {
-				const tokensAndIdentityData = await fetchAPI({path:"/tokens", method:"POST", authorization:false, body:{code,url:idpDomain, redirect_uri, client_id, grant_type}});
+
+				const tokensAndIdentityData = await fetchAPI({path:"/tokens", method:"POST", authorization:false, body:{code,url:ENV_API.idpDomain, redirect_uri: ENV_API.authorizeParams.redirect_uri, client_id: ENV_API.authorizeParams.client_id, grant_type: ENV_API.authorizeParams.grant_type}});
 				const userRecord:Auth_Types.UserRecord = await fetchAPI({path:"/register", method:"POST", authorization:false, body: tokensAndIdentityData.identityData});
 
 				localStorage.setItem("university-center-user", JSON.stringify({userRecord, tokens: tokensAndIdentityData.tokens}));
@@ -123,7 +116,7 @@ export const Form = function(){
 
 		//check if account with the email already existed
 		if(!signIn&&email){
-			fetchAPI({path:"/userExist",authorization:false,query:{email}})
+			fetchAPI({path:"/userExist",authorization:false,query:{email}, showAlert: false})
 				.then(data=>{setUserExist(data.userExist);console.log(data);})
 				.catch(error=>{console.log(error);});
 		}
@@ -147,7 +140,7 @@ export const Form = function(){
 			</div>
 			{incorrectSignIns ? <p className={style["form__field-required-msg"]}>Email or password is incorrect! Try again.</p> : null}
 			<button onClick={(e)=>onClickSignIn(e)} className={[style["form__action-btn"], style["button"], style["is-info"]].join(" ")} type="button">Sign In</button>
-			<a href={pkceURL}><button  className={[style["form__action-btn"], style["button"], style["is-info"]].join(" ")} type="button">Sign In Via Google</button></a>
+			<a href={ENV_API.authorizeEndpointWithParams}><button  className={[style["form__action-btn"], style["button"], style["is-info"]].join(" ")} type="button">Sign In Via Google</button></a>
 			{/* <div className={style["annoucement-texts"]}>
 				<p>Users with different role will see different UI when logged in. However, only the Admin UI and logic are functional at the moment.</p>
 				<div>
