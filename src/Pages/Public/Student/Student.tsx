@@ -10,13 +10,6 @@ export const PublicStudent = function(){
 
 		<div className={style["content-group"]}>
 			<div className={style["content-item"]}>
-				<div className={[style["content"], style["content-header"]].join(" ")}>
-					<p>Outdated API documentations(images below are up to date)</p>
-					<h5>The CRUD operations available for users with a administrator role.</h5>
-					<a target="_blank" href="https://siaxiong.github.io/university-center-swagger/" rel="noreferrer">Interactive API Definitions</a>
-				</div>
-			</div>
-			<div className={style["content-item"]}>
 				<div className={style.content}>
 					<h5>1. Student Home Page</h5>
 					<img src={Student_Home_IMG} alt="an image"/>
