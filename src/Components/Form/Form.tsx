@@ -24,8 +24,8 @@ export const Form = function(){
 
 				const tokensAndIdentityData = await fetchAPI({path:"/tokens", method:"POST", authorization:false, body:{code,url:ENV_API.idpDomain, redirect_uri: ENV_API.authorizeParams.redirect_uri, client_id: ENV_API.authorizeParams.client_id, grant_type: ENV_API.authorizeParams.grant_type}});
 				const userRecord:Auth_Types.UserRecord = await fetchAPI({path:"/register", method:"POST", authorization:false, body: tokensAndIdentityData.identityData});
-
-				localStorage.setItem("university-center-user", JSON.stringify({userRecord, tokens: tokensAndIdentityData.tokens}));
+				const professorRecords:Auth_Types.ProfessorCourseRecord[] = await fetchAPI({path:"/professorCourses", query:{userId:userRecord.id}, showAlert: false});
+				localStorage.setItem("university-center-user", JSON.stringify({userRecord, tokens: tokensAndIdentityData.tokens, professorRecords}));
 				if(userRecord.enrollmentStatus === "Accepted") navigate(`/${(userRecord.role).toLocaleLowerCase()}`);
 				else if (userRecord.id) navigate("/pending");
 				else navigate("/");
@@ -40,7 +40,8 @@ export const Form = function(){
 
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("siaxiong23@icloud.com");
+	// const [email, setEmail] = useState("siaxiong23@icloud.com");
+	const [email, setEmail] = useState("siaxiongdev@gmail.com");
 	const [password, setPassword] = useState("123password");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [signUpRole, setSignUpRole] = useState("");
@@ -75,10 +76,11 @@ export const Form = function(){
 		try {
 			if(email&&password){
 				const data = await fetchAPI({path:"/login",method: "POST", authorization: false, body: {email, password}});
+				console.log("data: ", data);
 	
 				localStorage.setItem("university-center-user", JSON.stringify(data));
 				if(data.userRecord.enrollmentStatus !== "Accepted") navigate("/pending");
-				else navigate(`/${data.userRecord.role}`);
+				else navigate(`/${(data.userRecord.role).toLocaleLowerCase()}`);
 			} else setSubmitClicked(true);
 			
 		} catch (error) {

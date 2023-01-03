@@ -5753,6 +5753,9 @@ label.panel-block:hover {
 .PublicAdmin .content-group .content-item .content-header {
   margin: 2em 0;
 }
+.PublicAdmin .content-group .content-item .content-header p {
+  color: red;
+}
 .PublicAdmin .content-group .content-item .content h5 {
   background-color: hsl(44deg, 100%, 77%);
   padding: 1em;

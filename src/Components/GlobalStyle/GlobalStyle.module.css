@@ -9,4 +9,8 @@
 
 .hide {
   display: none;
+}
+
+a {
+  text-decoration: none;
 }/*# sourceMappingURL=GlobalStyle.module.css.map */

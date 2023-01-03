@@ -25,14 +25,15 @@ export const PendingPage = function(){
 		<p>Pending Page</p>
 		<div>
 			<p>User Profile</p>
-			{userArr.map((currUser, index)=><p key={index}>{`${currUser[0]}: ${currUser[1]}`}</p>)}
+			{userArr.map((currUser, index)=><p key={index}><b>{currUser[0]}:</b> {currUser[1]}</p>)}
 		</div>
-		{!userRecord.role ? <>
-			<p>Pick a role</p>
-			<button onClick={()=>updateRoleRequest("Admin")}>Admin</button>
-			<button onClick={()=>updateRoleRequest("Professor")}>Professor</button>
-			<button onClick={()=>updateRoleRequest("Student")}>Student</button>
-		</> : <p>Waiting for the university to make a decision on your enrollment request.</p>}
-
+		<div className={style["statusMessage"]}>
+			{!userRecord.role ? <>
+				<p>Pick a role</p>
+				<button onClick={()=>updateRoleRequest("Admin")}>Admin</button>
+				<button onClick={()=>updateRoleRequest("Professor")}>Professor</button>
+				<button onClick={()=>updateRoleRequest("Student")}>Student</button>
+			</> : <p>Waiting for the university to make a decision on your enrollment request.</p>}
+		</div>
 	</div>;
 };

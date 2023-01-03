@@ -1,4 +1,7 @@
 .pendingPage {
   max-width: 500px;
   margin: 0 auto;
+}
+.pendingPage .statusMessage p {
+  background-color: yellow;
 }/*# sourceMappingURL=PendingStyle.module.css.map */

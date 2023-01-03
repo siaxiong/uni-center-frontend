@@ -48,13 +48,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3500",
-  
+  },  
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.45.1",
     "@typescript-eslint/parser": "^5.45.1",
     "eslint": "^8.29.0",
     "eslint-plugin-react": "^7.31.11"
-  }
+  },
+  
+  "proxy": "http://localhost:3500"
 }

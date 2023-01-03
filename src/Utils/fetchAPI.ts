@@ -1,20 +1,22 @@
-import {API} from "../ENVIRONMNET_VAR";
+import {ENV_API} from "../ENVIRONMNET_VAR";
 
 type payloadType = {
 	path: string,
 	method?: string,
-	body?: Record<string,string>
+	body?: Record<string,string> | FormData,
 	authorization?: boolean,
-	contentType?: string,
+	// contentType?: string,
 	query?: Record<string,string>,
 	showAlert?: boolean
+	showSuccess?:boolean
 }
-
 
 export const fetchAPI = async function(payload: payloadType){
 
 	try {
-		const headerObj = new Headers({"Content-Type":"application/json"});
+		const headerObj = new Headers();
+		payload.body instanceof FormData ? null : headerObj.append("Content-Type","application/json");
+
 
 		console.log(payload);
 		if(!(payload.authorization === false)) {
@@ -24,9 +26,10 @@ export const fetchAPI = async function(payload: payloadType){
 			const credentials = JSON.parse(jsonCredential);
 			if(!credentials?.tokens) console.log("no credential tokens");
 			headerObj.append("Authorization", `Bearer ${credentials.tokens.accessToken}`);
-
+			console.log(payload.body instanceof FormData ? true :false);
 		}
-		if(payload.contentType) headerObj.append("Content-Type", payload.contentType);
+
+		// if(payload.contentType) headerObj.set("Content-Type", payload.contentType);
 		if(!payload.method) payload.method = "GET";
 		
 		if(payload.query){
@@ -39,22 +42,22 @@ export const fetchAPI = async function(payload: payloadType){
 			payload.path = payload.path.concat("?",params.toString());
 		}
 
-		
-		const resp = await fetch(`${API.baseURL}/api/v1${payload.path}`,{
+		console.log(payload.body instanceof FormData ? true : false);
+		const resp = await fetch(`${ENV_API.resourceServer}${payload.path}`,{
 			method: payload.method,
 			headers: headerObj,
-			body: JSON.stringify(payload.body),
+			body: payload.body instanceof FormData ? payload.body : JSON.stringify(payload.body),
 		});
-		console.log("🚀 ~ file: fetchAPI.ts:44 ~ fetchAPI ~ resp", resp);
-		const data = await resp.json();
-		console.log("🚀 ~ file: fetch.ts:33 ~ fetchAPI ~ data", data);
 
+		const data = await resp.json();
 		if(!resp.ok) throw Error(data);
+		if(payload.showSuccess === true) alert("Success!");
+
 
 		return data;
 		
 	} catch (error) {
-		alert("There was a problem with that operation or getting resources for that operation.");
+		if(!(payload.showAlert === false)) alert(`There was a problem with that operation or getting resources for that operation. ${error}`);
 	}
 
 };

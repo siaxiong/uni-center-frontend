@@ -19,24 +19,24 @@ export const Users = () => {
 			.then(data=>setAllUsers(data));
 	};
 	const acceptPendingUser = async (id:string)=>{
-
-		await fetchAPI({path:`/users/${id}`, method:"PUT", body: {enrollmentStatus: "Accepted"}});
-		await getAllUsers();
+		fetchAPI({path:`/users/${id}`, method:"PUT", body: {enrollmentStatus: "Accepted"}, showSuccess:true})
+			.then(()=>getAllUsers());
 	};
 
 	const rejectPendingUser = async (id:string)=>{
-		await fetchAPI({path:`/users/${id}`, method:"PUT"});
-		await getAllUsers();
+		fetchAPI({path:`/users/${id}`, method:"PUT", body:{enrollmentStatus:"Rejected"}, showSuccess:true})
+			.then(()=>getAllUsers());
 	};
 
 	const permaDeleteUser = async(id:string)=>{
-		await fetchAPI({path:`/users/${id}`, method:"DELETE"});
-		await getAllUsers();
+		fetchAPI({path:`/users/${id}`, method:"DELETE", showSuccess:true})
+			.then(()=>getAllUsers());
 	};
 
 
 	return <div className={style["users__page"]}>
 		<div className={[style["table-container"], style["box"]].join(" ")}>
+			<p style={{backgroundColor: "hsl(44deg, 100%, 77%)"}}>Use the top left arrow to go back to the prev. page. </p>
 			<p className={style["table-title"]}>Accept or reject the users trying to enroll as their requested role</p>
 			<table>
 				<thead>
@@ -63,7 +63,7 @@ export const Users = () => {
 			</table>
 		</div>
 		<div className={[style["table-container"], style["box"]].join(" ")}>
-			<p className={style["table-title"]}>{"All users (including accepeted and rejected users)"}</p>
+			<p className={style["table-title"]}>{"All users (including accepted and rejected users)"}</p>
 			<p>*****I disabled the delete user feature so the testing users cant be delete****</p>
 
 			<table>

@@ -1,0 +1,33 @@
+
+@import "../../../../../node_modules/bulma/sass/utilities/_all.sass"
+@import "../../../../../node_modules/bulma/sass/elements/_all.sass"
+@import "../../../../../node_modules/bulma/sass/form/_all.sass"
+@import "../../../../../node_modules/bulma/sass/components/_all.sass"
+
+/*My personal list sass file*/
+// @import "../../../../Components/Lists/ListsStyle.module.sass"
+@import "../../../../Components/Table/TableStyle.module.sass"
+
+$light-blue-color: #eff5fb
+
+.assignmentSubmissions-Page
+    .create-assignment-form
+        padding: 1em
+        > *
+            margin-bottom: 1em
+
+    #replacePDF
+        display: flex
+        #replacePDF[title]
+            color: blue
+
+    table
+        th
+        tbody
+            td
+                padding: 0
+                > *
+                    padding: 0.5em
+                    text-align: center
+            .td-description>*:nth-child(odd)
+                background-color: $light-blue-color

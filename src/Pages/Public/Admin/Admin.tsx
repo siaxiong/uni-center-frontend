@@ -1,9 +1,9 @@
 import React from "react";
 import AdminStyle from  "./AdminStyle.module.css";
-import userUI from "../../../images/userUI.png";
-import courseUI from "../../../images/courseUI.png";
-import professorUI from "../../../images/professorUI.png";
-
+import Admin_Home_IMG from "../../../images/Admin/Admin_Home.png";
+import Admin_Accept_Users_IMG from "../../../images/Admin/Admin_Accept_Users.png";
+import Admin_Create_Courses_IMG from "../../../images/Admin/Admin_Create_Courses.png";
+import Admin_Assign_Courses_IMG from "../../../images/Admin/Admin_Assign_Courses.png";
 
 export const PublicAdmin = function(){
 	const style = AdminStyle;
@@ -12,49 +12,33 @@ export const PublicAdmin = function(){
 		<div className={style["content-group"]}>
 			<div className={style["content-item"]}>
 				<div className={[style["content"], style["content-header"]].join(" ")}>
+					<p>Outdated API documentations(images below are up to date)</p>
 					<h5>The CRUD operations available for users with a administrator role.</h5>
 					<a target="_blank" href="https://siaxiong.github.io/university-center-swagger/" rel="noreferrer">Interactive API Definitions</a>
 				</div>
 			</div>
 			<div className={style["content-item"]}>
 				<div className={style.content}>
-					<h5>1. Accept/Reject New Users</h5>
-					<div>                    
-						<ul>
-							<li>After a user signs up, a request for their desired role will be sent here.</li>
-							<li>A user who is accepted will be able to perform the actions available for their role.</li>
-							<li>A user with role Admin will have permission to perform everything on this current page.</li>
-							<li>A user with role Professor will have permission to assign assignments and grade assignments.</li>
-							<li>A user with role Student will have permission to pick courses to take and submit assignments.</li> 
-						</ul>
-					</div>
-					<img src={userUI} alt="an image"/>
+					<h5>1. Admin Home Page</h5>
+					<img src={Admin_Home_IMG} alt="an image"/>
 				</div>
 			</div>
 			<div className={style["content-item"]}>
 				<div className={style.content}>
-					<h5>2. Create/Delete Courses</h5>
-					<div>
-						<ul>
-							<li>Each course name must be unique.</li>
-							<li>Administrators are responsible for assigning courses for professors to teach.</li>
-							<li>Students will enroll themselve in the courses they want to take.</li>
-						</ul>
-					</div> 
-					<img src={courseUI} alt="an image"/>
+					<h5>2. Admin Accept/Reject New Users Page</h5>
+					<img src={Admin_Accept_Users_IMG} alt="an image"/>
 				</div>
 			</div>
 			<div className={style["content-item"]}>
 				<div className={style.content}>
-					<h5>3. Assign/Unassign Professors To/From Courses</h5>
-					<div>
-						<ul>
-							<li>Each course name must be unique.</li>
-							<li>Administrators are responsible for assigning courses for professors to teach.</li>
-							<li>Students will enroll themselve in the courses they want to take.</li>
-						</ul>
-					</div> 
-					<img src={professorUI} alt="an image"/>
+					<h5>3. Admin Create/Delete Courses</h5>
+					<img src={Admin_Create_Courses_IMG} alt="an image"/>
+				</div>
+			</div>
+			<div className={style["content-item"]}>
+				<div className={style.content}>
+					<h5>4. Admin Assign/Unassign Courses (to users with role of Professor)</h5>
+					<img src={Admin_Assign_Courses_IMG} alt="an image"/>
 				</div>
 			</div>
 		</div>

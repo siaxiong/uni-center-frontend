@@ -30,17 +30,20 @@ const router = createBrowserRouter(
 				<Route path="logout" element={<PublicPages.PublicHome/>}/>
 			</Route>
 			<Route element={<AuthProvider/>}>
-				<Route path="admin" element={<All_Layouts.AdminLayout/>}>
+				<Route path="admin" element={<All_Layouts.PrivateLayout/>}>
 					<Route index element={<PrivatePages.AdminRolePages.AdminHome/>}/>
 					<Route path="courses" element={<PrivatePages.AdminRolePages.Courses/>}/>
 					<Route path="professors" element={<PrivatePages.AdminRolePages.Professors/>}/>
 					<Route path="users" element={<PrivatePages.AdminRolePages.Users/>}/>
 				</Route>
-				<Route path="student" element={<All_Layouts.StudentLayout/>}>
+				<Route path="student" element={<All_Layouts.PrivateLayout/>}>
 					<Route index element={<StudentHome/>} />
+					<Route path="add-drop-course" element={<PrivatePages.StudentRolePages.EnrollCourse/>}/>
+					<Route path=":course" element={<PrivatePages.StudentRolePages.Course/>}/>
 				</Route>
-				<Route path="professor" element={<All_Layouts.ProfessorLayout/>}>
+				<Route path="professor" element={<All_Layouts.PrivateLayout/>}>
 					<Route index element={<ProfessorHome/>}/>
+					<Route path=":courseName" element={<PrivatePages.ProfessorRolePages.Course/>}/>
 				</Route>
 			</Route>
 		</Route>

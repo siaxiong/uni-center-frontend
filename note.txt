@@ -1,0 +1,6 @@
+StudentCoursePage
+	1.course name
+	2.points earned
+	3.submission
+	5.professorCourseId
+	6.download submission

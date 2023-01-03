@@ -5768,4 +5768,7 @@ label.panel-block:hover {
   line-height: 2em;
   background-color: #eff5fb;
   color: #296fa8;
+}
+.Card-Component .card-body a {
+  text-decoration: none;
 }/*# sourceMappingURL=CardStyle.module.css.map */
