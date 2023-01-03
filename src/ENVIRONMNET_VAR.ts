@@ -1,6 +1,6 @@
 
 //********FOR PRODUCTION*********
-const redirect_uri = "https://university.siaxiong.com",
+const redirect_uri = "https://university.siaxiong.com";
 
 const VARS = {
 	idpDomain: "https://university-center.us.auth0.com",
