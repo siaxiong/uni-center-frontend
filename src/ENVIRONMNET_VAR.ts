@@ -48,5 +48,5 @@ export const ENV_API = {
 	idpDomain: VARS.idpDomain,
 	authorizeEndpointWithParams,
 	authorizeParams: VARS.authorizeParams,
-	resourceServer: VARS.authorizeParams.
+	resourceServer: VARS.authorizeParams,
 };
